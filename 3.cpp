@@ -66,7 +66,7 @@ void set()
 int size()
 {
 	alfaptr node = front;
-	int count;
+	int count=0;
 	while (node)
 		count++;node = node->next;
 	return count;
@@ -88,7 +88,7 @@ int average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
+	int sum = 0, count=0;
 	while (node) {
 		sum += node->x;
 		count++;
