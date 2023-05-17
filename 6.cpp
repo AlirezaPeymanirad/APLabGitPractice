@@ -9,3 +9,4 @@ int main()
 	printf("%d\n", a);
 	return 0;
 }
+// outpot = 513
