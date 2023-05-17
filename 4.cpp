@@ -7,3 +7,5 @@ int main()
     printf("%f", *ptr2 - *ptr1);
     return 0;
 }
+
+// print 90.5 - 12.5 which is 78.000000
