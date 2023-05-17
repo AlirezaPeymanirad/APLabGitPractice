@@ -5,11 +5,11 @@ using namespace std;
 
 // count all the specific char in the whole array of strings
 int countAllSpecificChars(string sArr[], int arrLength, char specificChar) {
-    int count;
-    for (int i = 0; i <= arrLength; ++i)
-        for (int j = 0; j <= sArr[i].size(); ++j)
+    int count = 0;
+    for (int i = 0; i < arrLength; ++i)
+        for (int j = 0; j < sArr[i].size(); ++j)
             // if the jth char of the string is the specific char
-            if (sArr[i][j] = specificChar)
+            if (sArr[i][j] == specificChar)
                 count++;
     return count;
 }
