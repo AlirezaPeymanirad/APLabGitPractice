@@ -1,4 +1,4 @@
-﻿#include<stdio.h>
+#include<stdio.h>
 const char * f(const char **p) {
 	auto q = (p + sizeof(char))[1];
 	return q;
@@ -11,3 +11,5 @@ int main() {
 
 	
 }
+// output:
+// Be WooW
