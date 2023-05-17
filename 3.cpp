@@ -1,9 +1,10 @@
-﻿#include<stdio.h>
+﻿#pragma warning(disable:4996)
+#include<stdio.h>
 #include<stdlib.h>
 #define MAX_SIZE 200
 int arr[MAX_SIZE];
 
-typedef struct alfa * alfaptr;
+typedef struct alfa* alfaptr;
 
 struct alfa {
 	long long x;
@@ -15,11 +16,14 @@ void push(int x)
 	alfaptr node;
 	node = (alfaptr)malloc(sizeof(struct alfa));
 	node->x = x;
-	if (!front)
+	if (front) {
+		alfaptr temp = front;
 		front = node;
+		front->next = front;
+	}
 	else {
-		rear->next = node;
 		rear = node;
+		front = node;
 	}
 }
 
@@ -27,7 +31,7 @@ void pop()
 {
 	alfaptr node;
 	if (!front)
-		printf("ERROR1");
+		printf("ERROR1\n");
 	else
 	{
 		node = front->next;
@@ -38,19 +42,27 @@ void search(int x)
 {
 	alfaptr node = front;
 	int counter = 0;
-	while (node)
+	if(node == NULL) {
+		printf("ERROR2");
+		return;
+	}
+	while (node) {
 		if (node->x == x)
-			printf("%d", counter);
-		else {
-			printf("ERROR2");
-			break;
-		}
+			printf("%d\n", counter);
 		node = node->next;
+	}
 }
 
 void rpop() {//pop last element
 	alfaptr node = front;
-	while (node)
+	if (!node)
+		return;
+	if (!node->next) {
+		free(rear);
+		rear = front;
+		return;
+	}
+	while (node->next->next)
 		node = node->next;
 	free(rear);
 	rear = node;
@@ -59,36 +71,38 @@ void rpop() {//pop last element
 void set()
 {
 	alfaptr node = front;
-	for (int i = 0; i < MAX_SIZE && node; i++, node = node->next)
+	for (int i = 0; (i < MAX_SIZE) && (node != NULL); i++, node = node->next)
 		arr[i] = node->x;
 }
 
 int size()
 {
 	alfaptr node = front;
-	int count;
-	while (node)
-		count++;node = node->next;
+	int count = 0;
+	while (node) {
+		count++; 
+		node = node->next;
+	}
 	return count;
 }
 
 void show()
 {
-	if (!front) {
+	if (front) {
 		for (int i = 0; i < MAX_SIZE; i++)
 			printf("%d ", arr[i]);
 	}
 	else
 	{
-		printf("ERROR3");
+		printf("ERROR3\n");
 	}
 }
 
-int average()
+double average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
+	int sum = 0, count = 0;
 	while (node) {
 		sum += node->x;
 		count++;
@@ -127,7 +141,10 @@ void main()
 			show();
 			break;
 		case 7://size
-			printf("%d", size());
+			printf("%d\n", size());
+			break;
+		case 8://average
+			printf("%d\n", average());
 			break;
 		case 10:
 			exit(0);
