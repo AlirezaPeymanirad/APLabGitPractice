@@ -1,9 +1,13 @@
 #include<stdio.h>
-int main()
-{
-    float arr[5] = { 12.5, 10.0, 13.5, 90.5, 0.5 };
-    float *ptr1 = &arr[0];
-    float *ptr2 = ptr1 + 3;
-    printf("%f", *ptr2 - *ptr1);
-    return 0;
+const char * f(const char **p) {
+	auto q = (p + sizeof(char))[1];
+	return q;
+}
+int main() {
+	const char * str[] = { "Wish","You","Best",":D" };
+	printf("%c%c ", *f(str), *(f(str) + 1));
+	printf("%c%c%c%c\n", **str, *(*(str + 1) + 1), *((str + 2)[-1] + 1), **&*(&str[-1] + 1));
+
+
+	
 }
