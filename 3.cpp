@@ -1,11 +1,12 @@
-﻿#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #define MAX_SIZE 200
 int arr[MAX_SIZE];
 
-typedef struct alfa * alfaptr;
+typedef struct alfa *alfaptr;
 
-struct alfa {
+struct alfa
+{
 	long long x;
 	alfaptr next;
 };
@@ -15,9 +16,14 @@ void push(int x)
 	alfaptr node;
 	node = (alfaptr)malloc(sizeof(struct alfa));
 	node->x = x;
+	node->next = NULL;
 	if (!front)
+	{
 		front = node;
-	else {
+		rear = node;
+	}
+	else
+	{
 		rear->next = node;
 		rear = node;
 	}
@@ -25,35 +31,70 @@ void push(int x)
 
 void pop()
 {
-	alfaptr node;
+
 	if (!front)
-		printf("ERROR1");
+		printf("ERROR1\n");
 	else
 	{
+		alfaptr node;
 		node = front->next;
+		free (front);
 		front = node;
 	}
 }
 void search(int x)
 {
 	alfaptr node = front;
-	int counter = 0;
+	bool find = false;
+	int counter = 1;
 	while (node)
 		if (node->x == x)
-			printf("%d", counter);
-		else {
-			printf("ERROR2");
+		{
+			printf("%d\n", counter);
+			find = true;
 			break;
 		}
-		node = node->next;
+		else
+		{
+			node = node->next;
+			counter++;
+		}
+
+	if (!find)
+		printf("ERROR2\n");
 }
 
-void rpop() {//pop last element
+int size()
+{
 	alfaptr node = front;
+	int count = 0;
 	while (node)
+	{
+		count++;
 		node = node->next;
-	free(rear);
-	rear = node;
+	}
+	return count;
+}
+
+void rpop()
+{ // pop last element
+	if (size() == 1)
+	{
+		pop();
+		front = NULL;
+		rear = NULL;
+	}
+	else if (front)
+	{
+		alfaptr node = front;
+		while (node->next != rear)
+			node = node->next;
+		free(rear);
+		node->next = NULL;
+		rear = node;
+	}
+	else if (!front)
+		printf("ERROR1");
 }
 
 void set()
@@ -63,73 +104,71 @@ void set()
 		arr[i] = node->x;
 }
 
-int size()
-{
-	alfaptr node = front;
-	int count;
-	while (node)
-		count++;node = node->next;
-	return count;
-}
-
 void show()
 {
-	if (!front) {
-		for (int i = 0; i < MAX_SIZE; i++)
+	if (front)
+	{
+		for (int i = 0; i < size(); i++)
 			printf("%d ", arr[i]);
+
+		printf("\n");
 	}
 	else
 	{
-		printf("ERROR3");
+		printf("ERROR3\n");
 	}
 }
 
-int average()
+float average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
-	while (node) {
+	int sum = 0, count = 0;
+	while (node)
+	{
 		sum += node->x;
 		count++;
 		node = node->next;
 	}
-	return sum / count;
+	return (sum * 1.0) / (count * 1.0);
 }
 
-void main()
+int main()
 {
 	int cmd;
 	long long int x;
 	while (true)
 	{
+		printf("enter\n");
 		scanf("%d", &cmd);
 		switch (cmd)
 		{
-		case 1://push
+		case 1: // push
 			scanf("%lld", &x);
 			push(x);
 			break;
-		case 2://pop
+		case 2: // pop
 			pop();
 			break;
-		case 3://rpop
+		case 3: // rpop
 			rpop();
 			break;
-		case 4://search
+		case 4: // search
 			scanf("%lld", &x);
 			search(x);
 			break;
-		case 5://set
+		case 5: // set
 			set();
 			break;
-		case 6://show
+		case 6: // show
 			show();
 			break;
-		case 7://size
-			printf("%d", size());
+		case 7: // size
+			printf("%d\n", size());
 			break;
-		case 10:
+		case 8:
+			printf("%f", average());
+		case 9:
 			exit(0);
 		}
 	}
