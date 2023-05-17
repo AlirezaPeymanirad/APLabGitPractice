@@ -8,6 +8,6 @@ int main() {
 	printf("%c%c ", *f(str), *(f(str) + 1));
 	printf("%c%c%c%c\n", **str, *(*(str + 1) + 1), *((str + 2)[-1] + 1), **&*(&str[-1] + 1));
 
-
+	//Output = Be WooW 
 	
 }
