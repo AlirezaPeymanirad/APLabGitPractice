@@ -1,9 +1,11 @@
-﻿#include<stdio.h>
+﻿
+#pragma warning (disable :4996)
+#include<stdio.h>
 #include<stdlib.h>
 #define MAX_SIZE 200
 int arr[MAX_SIZE];
 
-typedef struct alfa * alfaptr;
+typedef struct alfa* alfaptr;
 
 struct alfa {
 	long long x;
@@ -45,7 +47,7 @@ void search(int x)
 			printf("ERROR2");
 			break;
 		}
-		node = node->next;
+	node = node->next;
 }
 
 void rpop() {//pop last element
@@ -66,9 +68,9 @@ void set()
 int size()
 {
 	alfaptr node = front;
-	int count;
+	int count = 0;
 	while (node)
-		count++;node = node->next;
+		count++; node = node->next;
 	return count;
 }
 
@@ -88,7 +90,7 @@ int average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
+	int sum = 0, count = 0;
 	while (node) {
 		sum += node->x;
 		count++;
@@ -133,4 +135,4 @@ void main()
 			exit(0);
 		}
 	}
-}
+}// بعد از دوبار پرش ارور میده
