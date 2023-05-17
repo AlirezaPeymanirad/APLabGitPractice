@@ -7,3 +7,4 @@ int main()
     printf("%f", *ptr2 - *ptr1);
     return 0;
 }
+//جواب کد 78.000000
