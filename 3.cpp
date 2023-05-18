@@ -1,22 +1,26 @@
-﻿#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
+#pragma warning (disable:4996)
 #define MAX_SIZE 200
-int arr[MAX_SIZE];
+long long int arr[MAX_SIZE];
 
-typedef struct alfa * alfaptr;
+typedef struct alfa* alfaptr;
 
 struct alfa {
 	long long x;
 	alfaptr next;
 };
 alfaptr rear = NULL, front = NULL;
-void push(int x)
+void push(long long int x)//add node to end of out=r linkedlist
 {
 	alfaptr node;
 	node = (alfaptr)malloc(sizeof(struct alfa));
 	node->x = x;
-	if (!front)
+	node->next = NULL;
+	if (!front) {
 		front = node;
+		rear = node;
+	}
 	else {
 		rear->next = node;
 		rear = node;
@@ -30,65 +34,75 @@ void pop()
 		printf("ERROR1");
 	else
 	{
+	
 		node = front->next;
 		front = node;
+		
 	}
 }
 void search(int x)
 {
 	alfaptr node = front;
 	int counter = 0;
-	while (node)
+	if (node == NULL)
+	{
+		printf("ERROR2");
+		return;
+	}
+	while (node) {
 		if (node->x == x)
-			printf("%d", counter);
-		else {
-			printf("ERROR2");
-			break;
-		}
+			counter++;
 		node = node->next;
+	}
+	printf("%d", counter);
 }
 
 void rpop() {//pop last element
 	alfaptr node = front;
-	while (node)
+	while (node->next->next)
 		node = node->next;
 	free(rear);
+	node->next = NULL;
 	rear = node;
 }
 
 void set()
 {
 	alfaptr node = front;
-	for (int i = 0; i < MAX_SIZE && node; i++, node = node->next)
+	int i = 0;
+	for (; i < MAX_SIZE && node; i++, node = node->next)
 		arr[i] = node->x;
+	arr[i] = '\0';
 }
 
 int size()
 {
 	alfaptr node = front;
-	int count;
-	while (node)
-		count++;node = node->next;
+	int count=0;
+	while (node) {
+		count++; node = node->next;
+	}
 	return count;
 }
 
 void show()
 {
-	if (!front) {
-		for (int i = 0; i < MAX_SIZE; i++)
+	if (front) {
+		for (int i = 0; arr[i]!='\0'; i++)
 			printf("%d ", arr[i]);
 	}
 	else
 	{
 		printf("ERROR3");
 	}
+	printf("\n");
 }
 
-int average()
+float average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
+	long long int sum = 0, count=0;
 	while (node) {
 		sum += node->x;
 		count++;
