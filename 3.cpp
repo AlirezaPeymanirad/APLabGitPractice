@@ -45,15 +45,33 @@ void search(int x)
 			printf("ERROR2");
 			break;
 		}
+		counter ++;
 		node = node->next;
 }
 
 void rpop() {//pop last element
+	if(!front)
+	{
+		return ;
+	}
 	alfaptr node = front;
-	while (node)
+	alfaptr prev_node = NULL;
+	while (node->next)
+	{
+		prev_node = node;
 		node = node->next;
-	free(rear);
-	rear = node;
+	}
+	if(prev_node)
+	{
+		prev_node->next = NULL;
+	}
+	else
+	{
+		front = NULL;
+		free(node);
+		rear = prev_node;
+	}
+	
 }
 
 void set()
@@ -66,7 +84,7 @@ void set()
 int size()
 {
 	alfaptr node = front;
-	int count;
+	int count = 0;
 	while (node)
 		count++;node = node->next;
 	return count;
@@ -86,13 +104,16 @@ void show()
 
 int average()
 {
-
 	alfaptr node = front;
-	int sum = 0, count;
+	int sum = 0, count = 0;
 	while (node) {
 		sum += node->x;
 		count++;
 		node = node->next;
+	}
+	if(count == 0)
+	{
+		return 0;
 	}
 	return sum / count;
 }
