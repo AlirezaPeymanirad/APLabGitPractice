@@ -1,11 +1,13 @@
-﻿#include<stdio.h>
+#include<stdio.h>
 int main()
 {
 	int a;
-	char *x;
-	x = (char *)&a;
+	char* x;
+	x = (char*)&a;
 	a = 512;
+	printf("%c", *x);
 	x[0] = 1;
 	printf("%d\n", a);
 	return 0;
 }
+//513
