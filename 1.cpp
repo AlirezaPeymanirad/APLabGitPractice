@@ -6,7 +6,8 @@ class container {
     float* p;
 public:
     container(int s) : size(s), p(new float[s]) {}
-    const int& getsize() const { return size; }
+    
+    int& getsize() { return size; }
     ~container() { delete[] p; }
 };
 
@@ -15,7 +16,7 @@ class vector : public container {
 public:
     int len;
     explicit vector(int l) : container(100), len(l), call_num(0) {}
-    int& getlen() const {
+    int& getlen() {
         call_num++;
         return len;
     }
