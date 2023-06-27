@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/new/prefix1"/>
+    <qresource prefix="/">
+        <file>5947114fd9b1f751753920dbebc69c55.jpg</file>
+        <file>board.png</file>
+        <file>logo.png</file>
+        <file>name.png</file>
+        <file>parrot.png</file>
+        <file>queen.png</file>
+        <file>king skull.png</file>
+        <file>UserProfile.png</file>
+        <file>coin.png</file>
+        <file>lose.png</file>
+        <file>win.png</file>
+        <file>green-btn.png</file>
+        <file>red-btn.png</file>
+        <file>yellow-btn.png</file>
+        <file>label.png</file>
+        <file>board1.jpg</file>
+        <file>parrot.png</file>
+        <file>labelCard.png</file>
+        <file>labelCard_land.png</file>
+        <file>profile_cartoon.png</file>
+        <file>parrot.png</file>
+        <file>parrot1.png</file>
+        <file>parrot2.png</file>
+        <file>parrot3.png</file>
+        <file>parrot4.png</file>
+        <file>parrot5.png</file>
+        <file>parrot6.png</file>
+        <file>parrot7.png</file>
+        <file>parrot8.png</file>
+        <file>star.png</file>
+        <file>win.png</file>
+        <file>windast.png</file>
+    </qresource>
+</RCC>
